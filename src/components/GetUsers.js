@@ -1,11 +1,9 @@
 import React from 'react';
 import UserLine from './UserLine';
 
-const GetUsers = ({ results }) => {
-  const header = results.users[0];
-  const userInfo = results.users;
-
-  console.log(userInfo)
+const GetUsers = ({ users }) => {
+  const header = users[0];
+  const userInfo = users;
 
   return (
     <div>

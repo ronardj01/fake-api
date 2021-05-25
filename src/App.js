@@ -1,14 +1,24 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import data from './data/fakeData.json'
 import GetUsers from './components/GetUsers';
 
-const bookings = data
-
 function App() {
+  const [fakeApi, setFakeApi] = useState([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("http://localhost:8000/users");
+      const users = await response.json();
+      setFakeApi(users)
+    }
+    fetchData()
+  }, [])
+
   return (
-    <GetUsers results={bookings}/>
+    <div>
+      {fakeApi.length > 0 && <GetUsers users={fakeApi} />}
+    </div>
   );
 }
 
